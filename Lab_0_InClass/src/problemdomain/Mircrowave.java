@@ -46,5 +46,11 @@ public class Mircrowave extends Appliance
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
+	
+	@Override
+	public String toString() {
+	    return "Microwave " super.toString() + ", " + getCapacity() + ", " + getRoomType();
+	}
+
 
 }
