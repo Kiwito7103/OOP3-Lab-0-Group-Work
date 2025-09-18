@@ -87,10 +87,49 @@ public class ApplianceStoreManager {
         }
         if (matches.isEmpty()) {
             System.out.println("No appliances found for brand: " + brand);
-        } else {
-            System.out.println("Appliances found for brand \"" + brand + "\":");
-            for (Appliance a : matches) {
-                System.out.println(a);
+            return;
+        }
+
+        System.out.println("Matching Appliances:");
+        for (Appliance a : matches) {
+            System.out.println(a);
+        }
+    }
+
+    private void displayByType() {
+        System.out.println("Appliance Types:");
+        System.out.println("1 - Refrigerators");
+        System.out.println("2 - Vacuums");
+        System.out.println("3 - Microwaves");
+        System.out.println("4 - Dishwashers");
+        System.out.print("Enter type of appliance: ");
+        String opt = in.nextLine().trim();
+
+        switch (opt) {
+            case "1" -> {
+                System.out.print("Enter number of doors (2, 3, or 4): ");
+                String d = in.nextLine().trim();
+                int doors;
+                try {
+                    doors = Integer.parseInt(d);
+                } catch (Exception e) {
+                    System.out.println("Invalid number of doors.");
+                    return;
+                }
+                List<Refrigerator> list = new ArrayList<>();
+                for (Appliance a : appliances) {
+                    if (a instanceof Refrigerator r && r.getNumberOfDoors() == doors) {
+                        list.add(r);
+                    }
+                }
+                if (list.isEmpty()) {
+                    System.out.println("No Matching Fridges.");
+                    return;
+                }
+                System.out.println("Matching Fridges:");
+                for (Refrigerator r : list) {
+                    System.out.println(r);
+                }
             }
         }
     }
