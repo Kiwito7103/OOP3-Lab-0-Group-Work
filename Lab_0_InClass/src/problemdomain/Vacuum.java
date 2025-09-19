@@ -49,5 +49,7 @@ public class Vacuum extends Appliance
 	public void setVoltage(int voltage) {
 		this.voltage = voltage;
 	}
+	public String toString() {
+		return "Vacuum " + super.toString() + ", " + getGrade() + ", " + getVoltage();
 
 }

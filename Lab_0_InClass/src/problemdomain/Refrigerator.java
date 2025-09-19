@@ -85,7 +85,7 @@ public class Refrigerator extends Appliance
 
 	@Override
 	public String toString() {
-		return "Refrigerator" + super.toString() +  getNumDoors() + ", " + getHeight() + ", " + getWidth();
+		return "Refrigerator " + super.toString() + ", " + getNumDoors() + ", " + getHeight() + ", " + getWidth();
 	}
 	
 	
