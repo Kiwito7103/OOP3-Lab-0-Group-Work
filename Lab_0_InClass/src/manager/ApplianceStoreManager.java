@@ -1,10 +1,25 @@
 package manager;
 
-import java.io.*;
-import java.util.*;
+import problemdomain.Appliance;
+import problemdomain.Refrigerator;
+import problemdomain.Vacuum;
+import problemdomain.Microwave;
+import problemdomain.Dishwasher;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 public class ApplianceStoreManager {
+
     // Attributes
+    private final Scanner in = new Scanner(System.in);
 
     ArrayList<Appliance> appliances;
 
@@ -64,7 +79,7 @@ public class ApplianceStoreManager {
         for (Appliance a : appliances) {
             if (a.getItemNumber() == id) {
                 if (a.getQuantity() > 0) {
-                    a.reduceQuantity(1);
+                    a.reduceQuantity();
                     System.out.println("Appliance \"" + id + "\" has been checked out.");
                 } else {
                     System.out.println("Sorry, that appliance is not available.");
@@ -77,7 +92,7 @@ public class ApplianceStoreManager {
 
     private void findByBrand() {
         System.out.print("Enter brand to search for: ");
-        String brand = in.nexLine().trim();
+        String brand = in.nextLine().trim();
 
         List<Appliance> matches = new ArrayList<>();
         for (Appliance a : appliances) {
@@ -118,7 +133,7 @@ public class ApplianceStoreManager {
                 }
                 List<Refrigerator> list = new ArrayList<>();
                 for (Appliance a : appliances) {
-                    if (a instanceof Refrigerator r && r.getNumberOfDoors() == doors) {
+                    if (a instanceof Refrigerator r && r.getNumDoors() == doors) {
                         list.add(r);
                     }
                 }
@@ -131,6 +146,95 @@ public class ApplianceStoreManager {
                     System.out.println(r);
                 }
             }
+            case "2" -> {
+                System.out.print("Enter battery voltage value. 18V or 24V: ");
+                int voltage;
+                try {
+                    voltage = Integer.parseInt(in.nextLine().trim());
+                } catch (Exception e) {
+                    System.out.println("Invalid voltage.");
+                    return;
+                }
+                boolean any = false;
+                for (Appliance a : appliances) {
+                    if (a instanceof Vacuum v && v.getVoltage() == voltage) {
+                        if (!any) {
+                            System.out.println("Matching Vacuums:");
+                            any = true;
+                            System.out.println(v);
+                        }
+                    }
+                    if (!any) {
+                        System.out.println("No Matching Vacuums.");
+                    }
+                }
+            }
+            case "3" -> {
+                System.out.print("Room where microwave will be used, K (Kitchen) or W (Work Site): ");
+                String rt = in.nextLine().trim().toUpperCase();
+                if (!(rt.equals("K") || rt.equals("W"))) {
+                    System.out.println("Invalid.");
+                    return;
+                }
+                boolean any = false;
+                for (Appliance a : appliances) {
+                    if (a instanceof Microwave m && m.getRoomType().equalsIgnoreCase(rt)) {
+                        if (!any) {
+                            System.out.println("Matching Microwaves:");
+                            any = true;
+                            System.out.println(m);
+                        }
+                    }
+                    if (!any) {
+                        System.out.println("No Matching Microwaves.");
+                    }
+                }
+            }
+            case "4" -> {
+                System.out.print("Enter the sound rating of the dishwasher: Qt (Quietest), Qr (Quieter), Q (Quiet), M (Moderate): ");
+                String sr = in.nextLine().trim();
+                boolean any = false;
+                for (Appliance a : appliances) {
+                    if (a instanceof Dishwasher d && d.getSoundRating().equalsIgnoreCase(sr)) {
+                        if (!any) {
+                            System.out.println("Matching Dishwashers:");
+                            any = true;
+                        }
+                        System.out.println(d);
+                    }
+                }
+                if (!any) {
+                    System.out.println("No Matching Dishwashers.");
+                }
+            }
+            default ->
+                System.out.println("Invalid option.");
         }
+    }
+
+    private void randomList() {
+        System.out.print("Enter number of appliances: ");
+        int n;
+        try {
+            n = Integer.parseInt(in.nextLine().trim());
+        } catch (Exception e) {
+            System.out.println("Invalid number.");
+            return;
+        }
+        if (appliances.isEmpty()) {
+            System.out.println("No appliances available.");
+            return;
+        }
+        List<Appliance> copy = new ArrayList<>(appliances);
+        Collections.shuffle(copy);
+        int limit = Math.min(n, copy.size());
+        System.out.println("Random Appliances:");
+        for (int i = 0; i < limit; i++) {
+            System.out.println(copy.get(i));
+        }
+    }
+
+    private void save() {
+
     }
 }
