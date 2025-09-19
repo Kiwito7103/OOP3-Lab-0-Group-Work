@@ -312,7 +312,7 @@ public class ApplianceStoreManager {
     }
 
     private void save() {
-        String filePath = "Lab_0_InClass/res/appliances.txt";
+        String filePath = "res/appliances.txt";
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
             for (Appliance a : appliances) {
                 pw.println(a.toString());

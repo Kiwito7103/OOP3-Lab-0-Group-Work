@@ -1,58 +1,128 @@
 package problemdomain;
 
-public class Dishwasher extends Appliance {
+public abstract class Appliance {
 
-    private String feature;
-    private String soundRating;
+    // Attributes
+    private int itemNumber;
+    private String brand;
+    private int quantity;
+    private int wattage;
+    private String color;
+    private double price;
 
     /**
+     * Constructs an Appliance object with specified attributes
+     *
      * @param itemNumber
      * @param brand
      * @param quantity
      * @param wattage
      * @param color
      * @param price
-     * @param feature
-     * @param soundRating
      */
-    public Dishwasher(int itemNumber, String brand, int quantity, int wattage, String color, double price,
-            String feature, String soundRating) {
-        super(itemNumber, brand, quantity, wattage, color, price);
-        this.feature = feature;
-        this.soundRating = soundRating;
+    public Appliance(int itemNumber, String brand, int quantity, int wattage, String color, double price) {
+        super();
+        this.itemNumber = itemNumber;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.wattage = wattage;
+        this.color = color;
+        this.price = price;
     }
 
     /**
-     * @return the feature
+     * @return the itemNumber
      */
-    public String getFeature() {
-        return feature;
+    public int getItemNumber() {
+        return itemNumber;
     }
 
     /**
-     * @param feature the feature to set
+     * @param itemNumber the itemNumber to set
      */
-    public void setFeature(String feature) {
-        this.feature = feature;
+    public void setItemNumber(int itemNumber) {
+        this.itemNumber = itemNumber;
     }
 
     /**
-     * @return the soundRating
+     * @return the brand
      */
-    public String getSoundRating() {
-        return soundRating;
+    public String getBrand() {
+        return brand;
     }
 
     /**
-     * @param soundRating the soundRating to set
+     * @param brand the brand to set
      */
-    public void setSoundRating(String soundRating) {
-        this.soundRating = soundRating;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the wattage
+     */
+    public int getWattage() {
+        return wattage;
+    }
+
+    /**
+     * @param wattage the wattage to set
+     */
+    public void setWattage(int wattage) {
+        this.wattage = wattage;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Dishwasher " + super.toString() + ", " + getFeature() + ", " + getSoundRating();
+        return "Appliance " + getItemNumber() + ", " + getBrand() + ", " + getQuantity()
+                + ", " + getWattage() + ", " + getColor() + ", " + getPrice();
     }
 
+    public void reduceQuantity() {
+        if (quantity > 0) {
+            quantity--;
+        }
+    }
 }
