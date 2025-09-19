@@ -6,6 +6,7 @@ import problemdomain.*;
 
 public class ApplianceStoreManager {
     // Attributes
+	private static final String FILE_PATH = "res/appliances.txt";
 
     private final ArrayList<Appliance> appliances = new ArrayList<>();
     private final Scanner in = new Scanner(System.in);
@@ -17,7 +18,7 @@ public class ApplianceStoreManager {
 
     private void loadAppliancesFromFle() {
         String filePath = "Lab_0_InClass/res/appliances.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -311,6 +312,14 @@ public class ApplianceStoreManager {
     }
 
     private void save() {
-
+        String filePath = "Lab_0_InClass/res/appliances.txt";
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
+            for (Appliance a : appliances) {
+                pw.println(a.toString());
+            }
+            System.out.println("Data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving data: " + e.getMessage());
+        }
     }
 }
