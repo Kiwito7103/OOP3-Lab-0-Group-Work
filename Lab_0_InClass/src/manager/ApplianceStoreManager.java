@@ -1,20 +1,14 @@
 package manager;
 
-import problemdomain.Appliance;
-import problemdomain.Refrigerator;
-import problemdomain.Vacuum;
-import problemdomain.Microwave;
-import problemdomain.Dishwasher;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import problemdomain.Appliance;
+import problemdomain.Dishwasher;
+import problemdomain.Microwave;
+import problemdomain.Refrigerator;
+import problemdomain.Vacuum;
 
 public class ApplianceStoreManager {
 
@@ -54,7 +48,7 @@ public class ApplianceStoreManager {
                 case "3" ->
                     displayByType();
                 case "4" ->
-                    produceRandomList();
+                    randomList();
                 case "5" -> {
                     save();
                     running = false;
