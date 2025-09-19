@@ -1,8 +1,8 @@
 package problemdomain;
 
 public abstract class Appliance {
-    // Attributes
 
+    // Attributes
     private int itemNumber;
     private String brand;
     private int quantity;
