@@ -1,64 +1,58 @@
 package problemdomain;
 
-public class Dishwasher extends Appliance
-{
-	private String feature;
-	private String soundRating;
+public class Dishwasher extends Appliance {
 
-	/**
-	 * @param itemNumber
-	 * @param brand
-	 * @param quantity
-	 * @param wattage
-	 * @param color
-	 * @param price
-	 * @param feature
-	 * @param soundRating
-	 */
-	public Dishwasher(int itemNumber, String brand, int quantity, int wattage, String color, double price,
-			String feature, String soundRating)
-	{
-		super(itemNumber, brand, quantity, wattage, color, price);
-		this.feature = feature;
-		this.soundRating = soundRating;
-	}
+    private String feature;
+    private String soundRating;
 
-	/**
-	 * @return the feature
-	 */
-	public String getFeature()
-	{
-		return feature;
-	}
+    /**
+     * @param itemNumber
+     * @param brand
+     * @param quantity
+     * @param wattage
+     * @param color
+     * @param price
+     * @param feature
+     * @param soundRating
+     */
+    public Dishwasher(int itemNumber, String brand, int quantity, int wattage, String color, double price,
+            String feature, String soundRating) {
+        super(itemNumber, brand, quantity, wattage, color, price);
+        this.feature = feature;
+        this.soundRating = soundRating;
+    }
 
-	/**
-	 * @param feature the feature to set
-	 */
-	public void setFeature(String feature)
-	{
-		this.feature = feature;
-	}
+    /**
+     * @return the feature
+     */
+    public String getFeature() {
+        return feature;
+    }
 
-	/**
-	 * @return the soundRating
-	 */
-	public String getSoundRating()
-	{
-		return soundRating;
-	}
+    /**
+     * @param feature the feature to set
+     */
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
 
-	/**
-	 * @param soundRating the soundRating to set
-	 */
-	public void setSoundRating(String soundRating)
-	{
-		this.soundRating = soundRating;
-	}
-	
-	@Override
-	public String toString() {
-	    return "Dishwasher " super.toString() + ", " + getFeature() + ", " + getSoundRating();
-	}
+    /**
+     * @return the soundRating
+     */
+    public String getSoundRating() {
+        return soundRating;
+    }
 
+    /**
+     * @param soundRating the soundRating to set
+     */
+    public void setSoundRating(String soundRating) {
+        this.soundRating = soundRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Dishwasher " + super.toString() + ", " + getFeature() + ", " + getSoundRating();
+    }
 
 }

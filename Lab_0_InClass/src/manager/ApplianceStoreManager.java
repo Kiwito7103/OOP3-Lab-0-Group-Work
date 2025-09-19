@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import problemdomain.Appliance;
 import problemdomain.Dishwasher;
-import problemdomain.Microwave;
+import problemdomain.Mircrowave;
 import problemdomain.Refrigerator;
 import problemdomain.Vacuum;
 
@@ -25,6 +25,8 @@ public class ApplianceStoreManager {
 
     private void loadAppliancesFromFle() {
 
+
+    
 
     public class ApplianceStoreManager {
         // Attributes
