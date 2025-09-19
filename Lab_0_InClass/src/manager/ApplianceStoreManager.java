@@ -17,7 +17,6 @@ public class ApplianceStoreManager {
     }
 
     private void loadAppliancesFromFle() {
-        String filePath = "Lab_0_InClass/res/appliances.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -312,14 +311,38 @@ public class ApplianceStoreManager {
     }
 
     private void save() {
-        String filePath = "Lab_0_InClass/res/appliances.txt";
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))) {
             for (Appliance a : appliances) {
-                pw.println(a.toString());
+                pw.println(serialize(a));
             }
             System.out.println("Data saved successfully.");
         } catch (IOException e) {
             System.out.println("Error saving data: " + e.getMessage());
         }
+    }
+    
+    private String serialize(Appliance a) 
+    {
+    	String base = a.getItemNumber() + ";" + a.getBrand() + ";" + a.getQuantity() + ";" +
+                a.getWattage() + ";" + a.getColor() + ";" + a.getPrice();
+    	
+    	if (a instanceof Refrigerator) 
+    	{
+    		Refrigerator r = (Refrigerator) a;
+    		return base + ";" + r.getNumDoors() + ";" + r.getHeight() + ";" + r.getWidth();
+    	} else if (a instanceof Vacuum)
+    	{
+    		Vacuum v = (Vacuum) a;
+            return base + ";" + v.getGrade() + ";" + v.getVoltage();
+        } else if (a instanceof Mircrowave) 
+        {
+        	Mircrowave m = (Mircrowave) a;
+        	return base + ";" + m.getCapacity() + ";" + m.getRoomType();
+        } else if (a instanceof Dishwasher) 
+        {
+        	Dishwasher d = (Dishwasher) a;
+            return base + ";" + d.getFeature() + ";" + d.getSoundRating();
+        }
+    	return base;
     }
 }
